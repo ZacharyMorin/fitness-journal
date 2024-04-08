@@ -1,0 +1,7 @@
+{
+  "name": "fitness-journal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
