@@ -1,0 +1,56 @@
+<!-- Todo Zach: figure out if this is needed? The Ionic CLI generated this when creating the project-->
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="header-title">
+      <div class="date-range">Apr 8 - 14</div>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="navigateWeeks('prev')">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <ion-title class="header-title">
+        <div class="date-range">{{ weekRange }}</div>
+      </ion-title>
+
+      <ion-buttons slot="end">
+        <ion-button (click)="navigateWeeks('next')">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item-group>
+      @for (day of daysOfWeek; track day) {
+        <ion-item-divider>
+          <ion-label>{{ day }}</ion-label>
+          <ion-icon class="add-icon" name="add-outline"></ion-icon>
+        </ion-item-divider>
+        <ion-item lines="none">
+          <ion-label>Rest</ion-label>
+        </ion-item>
+      }
+    </ion-item-group>
+  </ion-list>
+</ion-content>

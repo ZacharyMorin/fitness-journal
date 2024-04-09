@@ -1,0 +1,31 @@
+ion-header {
+  padding: 2em;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+.date-range {
+  font-size: 1.2em; /* Adjust as needed */
+  font-weight: bold;
+}
+
+ion-button {
+  --background: transparent; /* Makes the button background transparent */
+  --background-activated: transparent; /* Same for the activated state */
+}
+
+ion-icon {
+  font-size: 1.5em; /* Adjust icon size as needed */
+}
+
+.add-icon {
+  margin-left: auto;
+  margin-right: 1em;
+}
+
