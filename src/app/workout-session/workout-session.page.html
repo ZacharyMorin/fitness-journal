@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ this.date }} Workout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title>
+        {{ this.date }} {{ selectedWorkoutTypeCtrl.value ?? '' }}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <div *ngIf="!selectedWorkoutTypeCtrl.value">
+      <ion-radio-group [formControl]="selectedWorkoutTypeCtrl">
+        <ion-list-header>
+          <ion-label>Choose Workout Type</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>Cardio</ion-label>
+          <ion-radio labelPlacement="start" value="Cardio"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Strength Training</ion-label>
+          <ion-radio labelPlacement="start" value="Strength Training"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>HIIT</ion-label>
+          <ion-radio labelPlacement="start" value="HIIT"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Other</ion-label>
+          <ion-radio labelPlacement="start" value="Other"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+
+    <div *ngIf="selectedWorkoutTypeCtrl.value">
+      <ion-buttons class="reset-selection-button">
+        <ion-button expand="full" >
+          <ion-icon
+            name="arrow-back-circle-outline"
+            (click)="resetSelection()"
+            >
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <form *ngIf="workoutForm" [formGroup]="workoutForm">
+        <ion-item class="workout-name-input">
+          <ion-input formControlName="workoutName" placeholder="Enter workout name"></ion-input>
+          <ion-buttons slot="end">
+            <ion-button (click)="addExerciseSet()">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+
+        <div *ngIf="workoutForm.get('workoutName')?.value">
+          <div formArrayName="exerciseSets">
+            <div *ngFor="let exercise of exerciseSets.controls; let i = index" [formGroupName]="i" class="reps-and-weight-container">
+              <ion-checkbox (click)="addExerciseSet()"></ion-checkbox>
+
+              <ion-item class="workout-reps-input">
+                <ion-input formControlName="reps" placeholder="Enter reps"></ion-input>
+              </ion-item>
+
+              <ion-item class="workout-weight-input">
+                <ion-input formControlName="weight" placeholder="Enter weight"></ion-input>
+              </ion-item>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ion-list>
+</ion-content>

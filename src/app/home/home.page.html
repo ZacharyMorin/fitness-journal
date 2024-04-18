@@ -42,10 +42,15 @@
 
   <ion-list>
     <ion-item-group>
-      @for (day of daysOfWeek; track day) {
+      @for (day of daysOfWeek; track day.date) {
         <ion-item-divider>
-          <ion-label>{{ day }}</ion-label>
-          <ion-icon class="add-icon" name="add-outline"></ion-icon>
+          <ion-label>{{ day.dayOfWeek }}</ion-label>
+          <ion-icon
+            (click)="startWorkout(day.date)"
+            class="add-icon"
+            name="add-outline"
+          >
+          </ion-icon>
         </ion-item-divider>
         <ion-item lines="none">
           <ion-label>Rest</ion-label>

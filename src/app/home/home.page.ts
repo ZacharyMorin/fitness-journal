@@ -4,6 +4,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import { addIcons } from 'ionicons';
 import { addOutline, chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-tab',
@@ -15,7 +16,7 @@ import * as moment from 'moment';
 export class HomePage {
   currentDate = moment();
 
-  constructor() {
+  constructor(private router: Router) {
     addIcons({chevronBackOutline, chevronForwardOutline, addOutline})
   }
 
@@ -30,10 +31,12 @@ export class HomePage {
     const week = [];
 
     for (let i = 0; i < 7; i++) {
-      week.push(this.currentDate.clone().startOf('isoWeek').add(i, 'days').format('dddd'));
+      const date = this.currentDate.clone().startOf('isoWeek').add(i, 'days');
+      week.push({
+        dayOfWeek: date.format('dddd'),
+        date: date.format('MMMM D YYYY') // 'April 9 2024' format
+      });
     }
-
-    console.log(week);
 
     return week;
   }
@@ -46,4 +49,9 @@ export class HomePage {
     }
   }
 
+  startWorkout(dateStr: string) {
+    this.router.navigate(['/tabs/workout-session'], { queryParams: { date: dateStr } }).then(() => {
+      // do nothing
+    });
+  }
 }
