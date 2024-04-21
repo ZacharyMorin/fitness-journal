@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{ this.date }} Workout</ion-title>
+    <ion-title>
+      {{ this.date }}
+      {{ userHasSelectedWorkoutType ? selectedWorkoutTypeCtrl.value : 'Workout'}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,13 +11,14 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title>
-        {{ this.date }} {{ selectedWorkoutTypeCtrl.value ?? '' }}
+        {{ this.date }}
+        {{ userHasSelectedWorkoutType ? selectedWorkoutTypeCtrl.value : ''}}
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-list>
-    <div *ngIf="!selectedWorkoutTypeCtrl.value">
+    <div *ngIf="!userHasSelectedWorkoutType">
       <ion-radio-group [formControl]="selectedWorkoutTypeCtrl">
         <ion-list-header>
           <ion-label>Choose Workout Type</ion-label>
@@ -42,7 +46,7 @@
       </ion-radio-group>
     </div>
 
-    <div *ngIf="selectedWorkoutTypeCtrl.value">
+    <div *ngIf="userHasSelectedWorkoutType">
       <ion-buttons class="reset-selection-button">
         <ion-button expand="full" >
           <ion-icon
@@ -56,12 +60,15 @@
       <form *ngIf="workoutForm" [formGroup]="workoutForm">
         <ion-item class="workout-name-input">
           <ion-input formControlName="workoutName" placeholder="Enter workout name"></ion-input>
-          <ion-buttons slot="end">
-            <ion-button (click)="addExerciseSet()">
-              <ion-icon name="add-outline"></ion-icon>
-            </ion-button>
-          </ion-buttons>
         </ion-item>
+
+        <ion-button
+          (click)="addExerciseSet()"
+          expand="block"
+          class="add-set-button"
+        >
+          Add Set
+        </ion-button>
 
         <div *ngIf="workoutForm.get('workoutName')?.value">
           <div formArrayName="exerciseSets">

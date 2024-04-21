@@ -64,6 +64,10 @@ export class WorkoutSessionPage implements OnInit, OnDestroy {
     }
   }
 
+  get userHasSelectedWorkoutType(): boolean {
+    return !!this.selectedWorkoutTypeCtrl?.value;
+  }
+
 
   get workoutName() {
     return this.workoutForm?.get('workoutName');
