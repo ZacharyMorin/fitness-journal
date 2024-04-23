@@ -14,3 +14,24 @@
   padding-left: 2em;
   width: 90%;
 }
+
+/* This will position your content container and button container within ion-content */
+.content-container {
+  flex: 1; /* Take up all available space */
+  overflow-y: auto; /* Add scroll to the container if content is too long */
+}
+
+.bottom-button-container {
+  position: fixed; /* Fix position to the bottom of the screen */
+  bottom: 0; /* Align to the bottom */
+  left: 0; /* Align to the left */
+  width: 40%; /* Take full width to center the button */
+  padding: 10px; /* Add some padding around the button */
+  //background: var(--ion-background-color, white); /* Use background variable or fallback to white */
+  z-index: 10; /* Ensure it's above other content */
+}
+
+.complete-button {
+  justify-self: start; /* Align the button to the start (left) */
+  margin-left: 10px; /* Add margin to the left of the button */
+}

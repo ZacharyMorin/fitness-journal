@@ -37,7 +37,6 @@ export class WorkoutSessionPage implements OnInit, OnDestroy {
   private routerQuerySub: Subscription | undefined;
   date: string | undefined;
   selectedWorkoutTypeCtrl: FormControl = new FormControl();
-  showRepsAndWeight: boolean = false;
   workoutForm: FormGroup | undefined;
 
 
@@ -64,6 +63,7 @@ export class WorkoutSessionPage implements OnInit, OnDestroy {
     }
   }
 
+
   get userHasSelectedWorkoutType(): boolean {
     return !!this.selectedWorkoutTypeCtrl?.value;
   }
@@ -79,10 +79,8 @@ export class WorkoutSessionPage implements OnInit, OnDestroy {
   }
 
 
-  addExercise() {
-    if (this.workoutForm?.value.workoutName?.length) {
-      this.showRepsAndWeight = true;
-    }
+  get hasExerciseSets(): boolean {
+    return this.exerciseSets?.length > 0;
   }
 
 
