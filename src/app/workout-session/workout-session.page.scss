@@ -21,14 +21,19 @@
   overflow-y: auto; /* Add scroll to the container if content is too long */
 }
 
-.bottom-button-container {
+.bottom-container {
   position: fixed; /* Fix position to the bottom of the screen */
   bottom: 0; /* Align to the bottom */
   left: 0; /* Align to the left */
-  width: 40%; /* Take full width to center the button */
+  width: 100%; /* Take full width to center the button */
   padding: 10px; /* Add some padding around the button */
-  //background: var(--ion-background-color, white); /* Use background variable or fallback to white */
   z-index: 10; /* Ensure it's above other content */
+}
+
+.bottom-button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
 }
 
 .complete-button {

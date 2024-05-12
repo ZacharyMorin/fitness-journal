@@ -3,7 +3,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonItemDivider, IonLabel, 
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addIcons } from 'ionicons';
 import { addOutline, chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Router } from '@angular/router';
 
 @Component({
