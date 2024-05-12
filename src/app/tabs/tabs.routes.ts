@@ -23,7 +23,7 @@ export const routes: Routes = [
       },
       {
         path: 'workout-session',
-        loadComponent: () => import('../workout-session/workout-session.page').then( m => m.WorkoutSessionPage)
+        loadComponent: () => import('../workout/workout.modal').then( m => m.WorkoutSessionPage)
       },
       {
         path: '',

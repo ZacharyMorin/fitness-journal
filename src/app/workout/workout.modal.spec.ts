@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { WorkoutSessionPage } from './workout-session.page';
+import { WorkoutSessionPage } from './workout.modal';
 
 describe('WorkoutSessionPage', () => {
   let component: WorkoutSessionPage;

@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItemDivider, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonItemGroup, IonList } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonItemDivider, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonItemGroup, IonList, IonImg, IonAvatar, IonSearchbar, IonModal } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addIcons } from 'ionicons';
 import { addOutline, chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
 import moment from 'moment';
 import { Router } from '@angular/router';
+import { WorkoutSessionPage } from "../workout/workout.modal";
 
 @Component({
-  selector: 'app-home-tab',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  standalone: true,
-  imports: [IonList, IonItemGroup, IonItem, IonButton, IonButtons, IonIcon, IonLabel, IonItemDivider, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent]
+    selector: 'app-home-tab',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+    standalone: true,
+    imports: [IonModal, IonSearchbar, IonAvatar, IonImg, IonList, IonItemGroup, IonItem, IonButton, IonButtons, IonIcon, IonLabel, IonItemDivider, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, WorkoutSessionPage]
 })
 export class HomePage {
   currentDate = moment();
@@ -50,8 +51,8 @@ export class HomePage {
   }
 
   startWorkout(dateStr: string) {
-    this.router.navigate(['/tabs/workout-session'], { queryParams: { date: dateStr } }).then(() => {
-      // do nothing
-    });
+    // this.router.navigate(['/tabs/workout-session'], { queryParams: { date: dateStr } }).then(() => {
+    //   // do nothing
+    // });
   }
 }
