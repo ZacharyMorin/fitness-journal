@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Rest Timer</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        <ion-label>Choose a duration below or set your own. Custom durations are saved for next time.</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>1:45</ion-label>
+        <ion-radio slot="start" value="105" (click)="startTimer(105)"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>1:35</ion-label>
+        <ion-radio slot="start" value="95" (click)="startTimer(95)"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>1:00</ion-label>
+        <ion-radio slot="start" value="60" (click)="startTimer(60)"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>2:00</ion-label>
+        <ion-radio slot="start" value="120" (click)="startTimer(120)"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-button expand="block" (click)="startTimer(0)">
+    Create Custom Timer
+  </ion-button>
+</ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonItemDivider, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonItemGroup, IonList, IonImg, IonAvatar, IonSearchbar, IonModal } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addIcons } from 'ionicons';
@@ -15,6 +15,7 @@ import { WorkoutSessionPage } from "../workout/workout.modal";
     imports: [IonModal, IonSearchbar, IonAvatar, IonImg, IonList, IonItemGroup, IonItem, IonButton, IonButtons, IonIcon, IonLabel, IonItemDivider, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, WorkoutSessionPage]
 })
 export class HomePage {
+  @ViewChild(IonModal) modal: IonModal | undefined;
   currentDate = moment();
 
   constructor(private router: Router) {
@@ -50,9 +51,8 @@ export class HomePage {
     }
   }
 
-  startWorkout(dateStr: string) {
-    // this.router.navigate(['/tabs/workout-session'], { queryParams: { date: dateStr } }).then(() => {
-    //   // do nothing
-    // });
+  startWorkout(date: string) {
+    console.log("Starting workout on:", date);
+    this.modal?.present();
   }
 }

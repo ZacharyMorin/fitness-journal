@@ -25,7 +25,7 @@ import {
   IonButton,
   IonButtons,
   IonCheckbox, IonModal, IonSearchbar, IonImg, IonAvatar } from '@ionic/angular/standalone';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { addIcons } from 'ionicons';
 import {
@@ -33,7 +33,10 @@ import {
   arrowBackCircleOutline,
   checkmarkOutline,
   closeOutline,
+  timerOutline,
 } from 'ionicons/icons';
+import { ModalController } from '@ionic/angular';
+import { RestTimerComponent } from '../rest-timer/rest-timer.component';
 
 @Component({
   selector: 'app-workout',
@@ -60,17 +63,19 @@ import {
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [ModalController],
 })
 export class WorkoutSessionPage implements OnInit, OnDestroy {
   private routerQuerySub: Subscription | undefined;
   date: string | undefined;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private modalController: ModalController, private route: ActivatedRoute, private fb: FormBuilder) {
     addIcons({
       addOutline,
       arrowBackCircleOutline,
       checkmarkOutline,
       closeOutline,
+      timerOutline
     });
   }
 
@@ -84,5 +89,13 @@ export class WorkoutSessionPage implements OnInit, OnDestroy {
     if (this.routerQuerySub) {
       this.routerQuerySub.unsubscribe();
     }
+  }
+
+  async openTimerModal() {
+    console.log('Opening timer modal');
+    const modal = await this.modalController.create({
+      component: RestTimerComponent
+    });
+    return await modal.present();
   }
 }
