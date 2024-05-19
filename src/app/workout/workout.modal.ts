@@ -24,7 +24,7 @@ import {
   IonIcon,
   IonButton,
   IonButtons,
-  IonCheckbox, IonModal, IonSearchbar, IonImg, IonAvatar } from '@ionic/angular/standalone';
+  IonCheckbox, IonModal, IonSearchbar, IonImg, IonAvatar, IonPopover, IonToast } from '@ionic/angular/standalone';
 import { Subscription, timer } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { addIcons } from 'ionicons';
@@ -43,7 +43,7 @@ import { RestTimerComponent } from '../rest-timer/rest-timer.component';
   templateUrl: './workout.modal.html',
   styleUrls: ['./workout.modal.scss'],
   standalone: true,
-  imports: [IonAvatar, IonImg, IonSearchbar, IonModal,
+  imports: [IonToast, IonPopover, IonAvatar, IonImg, IonSearchbar, IonModal,
     IonCheckbox,
     IonButtons,
     IonButton,
@@ -67,7 +67,10 @@ import { RestTimerComponent } from '../rest-timer/rest-timer.component';
 })
 export class WorkoutSessionPage implements OnInit, OnDestroy {
   private routerQuerySub: Subscription | undefined;
+
   date: string | undefined;
+  isToastOpen: boolean = false
+
 
   constructor(private modalController: ModalController, private route: ActivatedRoute, private fb: FormBuilder) {
     addIcons({
@@ -96,6 +99,24 @@ export class WorkoutSessionPage implements OnInit, OnDestroy {
     const modal = await this.modalController.create({
       component: RestTimerComponent
     });
+
+    modal.onDidDismiss().then((data) => {
+      if (data !== null) {
+        const timerDuration = data.data.duration;
+        this.startTimer(timerDuration);
+      }
+    });
+
     return await modal.present();
+  }
+
+
+  startTimer(duration: number) {
+    const timer$ = timer(5 * 1000); // Convert seconds to milliseconds
+
+    timer$.subscribe(() => {
+      console.log('Timer finished!');
+      this.isToastOpen = true;
+    });
   }
 }

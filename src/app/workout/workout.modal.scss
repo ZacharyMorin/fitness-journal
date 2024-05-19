@@ -62,3 +62,9 @@ ion-modal#example-modal ion-icon {
 ion-modal#example-modal .wrapper {
   margin-bottom: 10px;
 }
+
+.timer-dismiss-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}

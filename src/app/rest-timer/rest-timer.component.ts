@@ -25,8 +25,9 @@ export class RestTimerComponent  {
   }
 
   startTimer(duration: number) {
+    const timerDuration: {duration: number} = { duration };
     // Logic to start the timer with the selected duration
-    this.modalController.dismiss();
+    this.modalController.dismiss(timerDuration);
   }
 
 }
