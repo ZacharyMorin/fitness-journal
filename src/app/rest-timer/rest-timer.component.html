@@ -10,25 +10,23 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list>
-    <ion-radio-group>
-      <ion-list-header>
-        <ion-label>
-          Choose a duration below or set your own. Custom durations are saved for next time.
-        </ion-label>
-      </ion-list-header>
+  <div class="timer-container">
+    <div class="timer-circle">
+      @for (time of timeInSeconds; track time) {
+        <div class="time-interval" (click)="startTimer(time)">
+          {{ formatTime(time) }}
+        </div>
+      }
+    </div>
 
-      <ion-item>
-        <ion-radio value="60" (click)="startTimer(60)">1:00</ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-radio value="90" (click)="startTimer(90)">1:30</ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-radio value="120" (click)="startTimer(120)">2:00</ion-radio>
-      </ion-item>
-    </ion-radio-group>
-  </ion-list>
+    <div class="timer-action-buttons">
+      <div>-10 seconds</div>
+      <div>+10 seconds</div>
+      <div>Skip</div>
+    </div>
+  </div>
+
+
   <ion-button expand="block" (click)="startTimer(0)">
     Create Custom Timer
   </ion-button>
